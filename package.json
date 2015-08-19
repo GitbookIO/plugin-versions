@@ -1,0 +1,14 @@
+{
+  "name": "gitbook-plugin-versions",
+  "version": "1.0.0",
+  "description": "Display a <select> with other versions of your gitbook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Jackson",
+  "license": "ISC",
+  "engines": {
+    "gitbook": "*"
+  }
+}
