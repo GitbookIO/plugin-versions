@@ -20,4 +20,6 @@ Put this in your book.json:
 }
 ```
 
+When the user selects one of the options, they are taken to that URL.
+
 And you're done!
