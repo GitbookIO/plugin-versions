@@ -24,3 +24,7 @@ Put this in your book.json:
 A `<select>` element will be created with the given `options` and placed at the top of the book summary. When the user selects one of the options, they are taken to that URL.
 
 The `gitbookConfigURL` variable is a publicly accessible URL to your `book.json`. If this is present, the plugin will fetch the latest config when the page loads, so even older versions of your book will have updated `options`.
+
+### Credits
+
+Original work by [@mjackson](https://github.com/mjackson).
