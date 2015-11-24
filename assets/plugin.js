@@ -1,9 +1,11 @@
 require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
-    var versions = [];
+    var versions = [],
+        current  = undefined;
 
     // Update the select with a list of versions
     function updateVersions(_versions) {
         versions = _versions || versions;
+        current  = $('.versions-select select').val();
 
         // Cleanup existing selector
         $('.versions-select').remove();
@@ -18,7 +20,7 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
 
         _.each(versions, function(version) {
             var $option = $('<option>', {
-                'selected': version.selected,
+                'selected': (current === undefined ? version.selected : (current === version.value)),
                 'value': version.value,
                 'text': version.text
             });
