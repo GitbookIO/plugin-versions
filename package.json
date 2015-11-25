@@ -12,7 +12,7 @@
         "properties": {
             "type": {
                 "type": "string",
-                "enum": [ "branches", "tags" ],
+                "enum": [ "branches", "tags", "languages" ],
                 "default": "branches"
             }
         }

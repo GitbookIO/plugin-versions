@@ -2,22 +2,52 @@
 
 Display a `<select>` with other versions of your gitbook.
 
-### Usage
+### Usage with gitbook.com
+
+When your book is hosted on [GitBook.com](https://www.gitbook.com), the plugin can access a listing of versions using the [GitBook API](http://developer.gitbook.com/books/versions/).
 
 Put this in your book.json:
 
 ```js
 {
-  "plugins": [ "versions" ],
-  "pluginsConfig": {
-    "versions": {
-      "gitbookConfigURL": "https://raw.githubusercontent.com/rackt/history/gh-pages/book.json",
-      "options": [
-        { "value": "https://rackt.github.io/history/v1.3.0/", "text": "Version 1.3.0" },
-        { "value": "https://rackt.github.io/history/v1.4.0/", "text": "Version 1.4.0", "selected": true }
-      ] 
+    "plugins": [ "versions" ],
+    "pluginsConfig": {
+        "versions": {
+            "type": "branches"
+        }
     }
-  }
+}
+```
+
+Type can have different values:
+
+- Branches (`branches`)
+- Tags (`tags`)
+- Languages (`languages`)
+
+### Usage with a manual configuration
+
+Put this in your book.json:
+
+```js
+{
+    "plugins": [ "versions" ],
+    "pluginsConfig": {
+        "versions": {
+            "gitbookConfigURL": "https://raw.githubusercontent.com/rackt/history/gh-pages/book.json",
+            "options": [
+                {
+                    "value": "https://rackt.github.io/history/v1.3.0/",
+                    "text": "Version 1.3.0"
+                },
+                {
+                    "value": "https://rackt.github.io/history/v1.4.0/",
+                    "text": "Version 1.4.0",
+                    "selected": true
+                }
+            ]
+        }
+    }
 }
 ```
 
