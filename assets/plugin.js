@@ -46,7 +46,7 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
 
     // Fetch gitbook.com versions
     function fetchBookVersions(type) {
-        $.getJSON((gitbook.state.root+'/gitbook/api/versions/branches').replace(/\/\/+/g, '/'), function (versions) {
+        $.getJSON((gitbook.state.bookRoot+'/gitbook/api/versions/branches').replace(/\/\/+/g, '/'), function (versions) {
             updateVersions(_.map(versions, function(v) {
                 return {
                     text: v.name,

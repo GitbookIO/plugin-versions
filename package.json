@@ -6,7 +6,7 @@
     "author": "Samy Pesse <samypesse@gmail.com>",
     "license": "Apache-2.0",
     "engines": {
-        "gitbook": ">=2.5.0"
+        "gitbook": ">=2.6.2"
     },
     "gitbook": {
         "properties": {
