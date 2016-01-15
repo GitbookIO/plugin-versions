@@ -1,6 +1,7 @@
 require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
     var versions = [],
-        current  = undefined;
+        current  = undefined,
+        pluginConfig = {};
 
     // Update the select with a list of versions
     function updateVersions(_versions) {
@@ -29,8 +30,11 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
         });
 
         $select.change(function() {
-            var val = $select.val();
-            window.location.href = val;
+            var version = _.find(versions, {
+                value: $select.val()
+            });
+            var filePath = location.href.replace(gitbook.state.bookRoot, '');
+            window.location.href = version.includeFilepath? (version.value + filePath) : version.value;
         })
 
         $li.prependTo('.book-summary ul.summary');
@@ -51,15 +55,15 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
                 return {
                     text: v.name,
                     value: v.urls.website,
-                    selected: v.current
+                    selected: v.current,
+                    includeFilepath: pluginConfig.includeFilepath !== false && type !== 'languages'
                 };
             }));
         });
     }
 
     gitbook.events.bind('start', function (e, config) {
-        var pluginConfig = config.versions || {};
-
+        pluginConfig = config.versions || {};
         if (pluginConfig.options) updateVersions(pluginConfig.options);
 
         // Make sure we have a current book.json
