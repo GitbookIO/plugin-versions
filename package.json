@@ -1,24 +1,31 @@
 {
-    "name": "gitbook-plugin-versions",
-    "version": "2.1.2",
-    "description": "Display a <select> with other versions of your gitbook",
-    "main": "index.js",
-    "author": "Samy Pesse <samypesse@gmail.com>",
-    "license": "Apache-2.0",
-    "engines": {
-        "gitbook": ">=2.6.2"
-    },
-    "gitbook": {
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [ "branches", "tags", "languages" ],
-                "default": "branches"
-            },
-            "includeFilepath": {
-                "type": "boolean",
-                "description": "True to insert current filepath at the end of the version url"
-            }
-        }
+  "name": "gitbook-plugin-versions",
+  "version": "2.1.2",
+  "description": "Display a <select> with other versions of your gitbook",
+  "main": "index.js",
+  "author": "Samy Pesse <samypesse@gmail.com>",
+  "license": "Apache-2.0",
+  "engines": {
+    "gitbook": ">=2.6.2"
+  },
+  "gitbook": {
+    "properties": {
+      "type": {
+        "type": "string",
+        "enum": [
+          "branches",
+          "tags",
+          "languages"
+        ],
+        "default": "branches"
+      },
+      "includeFilepath": {
+        "type": "boolean",
+        "description": "True to insert current filepath at the end of the version url"
+      }
     }
+  },
+  "devDependencies": {
+    "eslint": "^2.7.0"
+  }
 }
