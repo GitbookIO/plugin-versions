@@ -35,7 +35,7 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
             });
             var filePath = location.href.replace(gitbook.state.bookRoot, '');
             window.location.href = version.includeFilepath? (version.value + filePath) : version.value;
-        })
+        });
 
         $li.prependTo('.book-summary ul.summary');
     }
@@ -43,7 +43,7 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
     // Fetch version from book.json (legacy plugin)
     function fetchBookOptionsVersions(gitbookConfigURL) {
         $.getJSON(gitbookConfigURL, function (bookConfig) {
-            options = bookConfig.pluginsConfig.versions.options;
+            var options = bookConfig.pluginsConfig.versions.options;
             updateVersions(options);
         });
     }
