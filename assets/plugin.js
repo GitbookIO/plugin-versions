@@ -19,7 +19,7 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
         });
         var $select = $li.find('select');
 
-        _.each(versions, function(version) {
+        $.each(versions, function(i, version) {
             var $option = $('<option>', {
                 'selected': (current === undefined ? version.selected : (current === version.value)),
                 'value': version.value,
@@ -51,7 +51,7 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
     // Fetch gitbook.com versions
     function fetchBookVersions(type) {
         $.getJSON(gitbook.state.bookRoot+'gitbook/api/versions/'+type, function (versions) {
-            updateVersions(_.map(versions, function(v) {
+            updateVersions($.map(versions, function(v) {
                 return {
                     text: v.name,
                     value: v.urls.website,
