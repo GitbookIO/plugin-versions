@@ -1,4 +1,4 @@
-require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
+require(['gitbook', 'jQuery'], function (gitbook, $) {
     var versions = [],
         current  = undefined,
         pluginConfig = {};
@@ -19,7 +19,7 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
         });
         var $select = $li.find('select');
 
-        _.each(versions, function(version) {
+        $.each(versions, function(i, version) {
             var $option = $('<option>', {
                 'selected': (current === undefined ? version.selected : (current === version.value)),
                 'value': version.value,
@@ -30,12 +30,15 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
         });
 
         $select.change(function() {
-            var version = _.find(versions, {
-                value: $select.val()
+            var filtered = $.grep(versions, function(v) {
+                return v.value === $select.val();
             });
+            // Get actual version Object from array
+            var version = filtered[0];
+
             var filePath = location.href.replace(gitbook.state.bookRoot, '');
             window.location.href = version.includeFilepath? (version.value + filePath) : version.value;
-        })
+        });
 
         $li.prependTo('.book-summary ul.summary');
     }
@@ -43,7 +46,7 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
     // Fetch version from book.json (legacy plugin)
     function fetchBookOptionsVersions(gitbookConfigURL) {
         $.getJSON(gitbookConfigURL, function (bookConfig) {
-            options = bookConfig.pluginsConfig.versions.options;
+            var options = bookConfig.pluginsConfig.versions.options;
             updateVersions(options);
         });
     }
@@ -51,7 +54,7 @@ require(['gitbook', 'jQuery', 'lodash'], function (gitbook, $, _) {
     // Fetch gitbook.com versions
     function fetchBookVersions(type) {
         $.getJSON(gitbook.state.bookRoot+'gitbook/api/versions/'+type, function (versions) {
-            updateVersions(_.map(versions, function(v) {
+            updateVersions($.map(versions, function(v) {
                 return {
                     text: v.name,
                     value: v.urls.website,
