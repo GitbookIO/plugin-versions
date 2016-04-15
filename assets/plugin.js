@@ -30,11 +30,11 @@ require(['gitbook', 'jQuery'], function (gitbook, $) {
         });
 
         $select.change(function() {
-            var version = $.grep(versions, function(v) {
+            var filtered = $.grep(versions, function(v) {
                 return v.value === $select.val();
             });
             // Get actual version Object from array
-            version = version[0];
+            var version = filtered[0];
 
             var filePath = location.href.replace(gitbook.state.bookRoot, '');
             window.location.href = version.includeFilepath? (version.value + filePath) : version.value;
